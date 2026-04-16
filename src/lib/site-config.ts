@@ -1,7 +1,7 @@
 /**
  * Configuración central del sitio (white-label / un deploy por cliente en Vercel).
  *
- * - Valores por defecto = cliente actual (Onfit Get Fit).
+ * - Valores por defecto = demo base (Forge Fitness).
  * - Override opcional vía JSON en NEXT_PUBLIC_SITE_CONFIG (merge parcial).
  * - Overrides puntuales vía NEXT_PUBLIC_* documentadas en .env.example.
  *
@@ -96,7 +96,7 @@ export type SiteConfig = {
   };
   assets: {
     faviconPath: string;
-    /** Ruta bajo /public (ej. /logo-onfit.png). Vacío = hexágono + letra. */
+    /** Ruta bajo /public (ej. /logo-cliente.png). Vacío = hexágono + letra. */
     logoImageSrc: string;
   };
   hero: {
@@ -132,50 +132,50 @@ const DEFAULT_SECTIONS: HomeSections = {
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
   brand: {
-    name: "Onfit Get Fit",
-    wordPrimary: "ONFIT",
-    wordSecondary: "GET FIT",
-    navShort: "ONFIT",
-    logoLetter: "O",
+    name: "Forge Fitness",
+    wordPrimary: "FORGE",
+    wordSecondary: "FITNESS",
+    navShort: "FORGE",
+    logoLetter: "F",
     taglineShort:
-      "Gym boutique en Buenos Aires. Entrenamiento con enfoque real: técnica, constancia y resultados.",
-    instagramHandle: "onfitgetfit",
+      "Gym boutique premium en Buenos Aires. Entrenamiento de élite, comunidad real, resultados medibles.",
+    instagramHandle: "forgefitness",
     locationLabel: "Buenos Aires, ARG",
   },
   seo: {
-    title: "Onfit Get Fit — Gym Boutique Premium en Buenos Aires",
+    title: "Forge Fitness — Gym Boutique Premium en Buenos Aires",
     description:
-      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. Clases guiadas por coaches certificados.",
-    siteName: "Onfit Get Fit",
+      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. +50 clases semanales con coaches certificados.",
+    siteName: "Forge Fitness",
     keywords:
-      "Onfit Get Fit, gym, Buenos Aires, fitness, CrossFit, HIIT, Palermo, entrenamiento",
+      "gym, Buenos Aires, CrossFit, HIIT, entrenamiento, fitness, Palermo",
     ogImageUrl: "",
     indexable: true,
   },
   contact: {
     addressLines: "Av. del Libertador 4980\nPalermo, Buenos Aires",
     phoneDisplay: "11 2484-2720",
-    email: "hola@onfitgetfit.com",
-    emailDisplay: "hola@onfitgetfit.com",
+    email: "info@forgefitness.com",
+    emailDisplay: "info@forgefitness.com",
     hoursLines: "Lun-Vie: 6:00–22:00\nSáb: 8:00–14:00",
     mapsSearchQuery: "Av. del Libertador 4980, Palermo, Buenos Aires, Argentina",
     whatsappPhoneDigits: "5491124842720",
   },
   assets: {
-    faviconPath: "/logo-onfit.png",
-    logoImageSrc: "/logo-onfit.png",
+    faviconPath: "/logo.png",
+    logoImageSrc: "",
   },
   hero: {
     eyebrowLeft: "Est. 2024 — Buenos Aires",
-    eyebrowRight: "Move smart · Get fit",
+    eyebrowRight: "No Pain, No Gain",
     categoryLine: "Gym Boutique Premium — Buenos Aires",
-    titleLine1: "ONFIT",
-    titleLine2: "GET FIT",
+    titleLine1: "FORGE",
+    titleLine2: "YOUR BODY",
     subtitle:
-      "Entrenamiento de élite en un espacio pensado para quienes buscan resultados reales. Sin excusas, sin límites.",
+      "Entrenamiento de élite en un espacio diseñado para quienes buscan resultados reales. Sin excusas, sin límites.",
   },
   preloader: {
-    subline: "Entrená con intención. Get fit.",
+    subline: "Forjá tu mejor versión",
   },
   sections: { ...DEFAULT_SECTIONS },
 };

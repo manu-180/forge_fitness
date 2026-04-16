@@ -260,31 +260,42 @@ export function Footer() {
                   "mapsUrl" in line && line.mapsUrl ? (
                     <a
                       href={line.mapsUrl}
-                      className="FT-cit"
+                      className="FT-cia"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {text}
+                      <span className="FT-ciw" aria-hidden>
+                        <Icon className="FT-cico" />
+                      </span>
+                      <span className="FT-cit">{text}</span>
                     </a>
                   ) : "whatsapp" in line && line.whatsapp ? (
                     <WhatsAppLeadLink
                       source="footer"
-                      className="FT-cit"
+                      className="FT-cia"
                     >
-                      {text}
+                      <span className="FT-ciw" aria-hidden>
+                        <Icon className="FT-cico" />
+                      </span>
+                      <span className="FT-cit">{text}</span>
                     </WhatsAppLeadLink>
                   ) : "mailto" in line && line.mailto ? (
-                    <a className="FT-cit" href={`mailto:${line.mailto}`}>
-                      {text}
+                    <a className="FT-cia" href={`mailto:${line.mailto}`}>
+                      <span className="FT-ciw" aria-hidden>
+                        <Icon className="FT-cico" />
+                      </span>
+                      <span className="FT-cit">{text}</span>
                     </a>
                   ) : (
-                    <span className="FT-cit">{text}</span>
+                    <>
+                      <span className="FT-ciw" aria-hidden>
+                        <Icon className="FT-cico" />
+                      </span>
+                      <span className="FT-cit">{text}</span>
+                    </>
                   );
                 return (
                   <li key={i} className="FT-ci">
-                    <span className="FT-ciw" aria-hidden>
-                      <Icon className="FT-cico" />
-                    </span>
                     {body}
                   </li>
                 );
