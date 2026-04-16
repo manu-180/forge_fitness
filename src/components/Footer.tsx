@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReveal } from "@/lib/hooks";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { footerNav, footerPrograms } from "@/lib/data";
@@ -159,9 +160,19 @@ export function Footer() {
         <div className="FT-m">
           <div className="FT-brand">
             <div className="FT-logo">
-              <div className="FT-hex">
-                <span>{config.brand.logoLetter}</span>
-              </div>
+              {config.assets.logoImageSrc.trim() ? (
+                <Image
+                  src={config.assets.logoImageSrc.trim()}
+                  alt={config.brand.name}
+                  width={32}
+                  height={32}
+                  className="FT-brandmark"
+                />
+              ) : (
+                <div className="FT-hex">
+                  <span>{config.brand.logoLetter}</span>
+                </div>
+              )}
               {config.brand.wordPrimary}{" "}
               <span style={{ color: "var(--lm)" }}>
                 {config.brand.wordSecondary}
@@ -283,8 +294,8 @@ export function Footer() {
         </div>
         <div className="FT-b">
           <p className="FT-cp">
-            © {new Date().getFullYear()} {config.brand.wordPrimary}{" "}
-            {config.brand.wordSecondary}. Todos los derechos reservados.
+            © {new Date().getFullYear()} {config.brand.name}. Todos los derechos
+            reservados.
           </p>
           <nav className="FT-bl" aria-label="Legal">
             {["Términos", "Privacidad", "Cookies"].map((l) => (

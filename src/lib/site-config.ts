@@ -1,7 +1,7 @@
 /**
  * Configuración central del sitio (white-label / un deploy por cliente en Vercel).
  *
- * - Valores por defecto = demo actual (Forge Fitness).
+ * - Valores por defecto = cliente actual (Onfit Get Fit).
  * - Override opcional vía JSON en NEXT_PUBLIC_SITE_CONFIG (merge parcial).
  * - Overrides puntuales vía NEXT_PUBLIC_* documentadas en .env.example.
  *
@@ -96,6 +96,8 @@ export type SiteConfig = {
   };
   assets: {
     faviconPath: string;
+    /** Ruta bajo /public (ej. /logo-onfit.png). Vacío = hexágono + letra. */
+    logoImageSrc: string;
   };
   hero: {
     eyebrowLeft: string;
@@ -130,48 +132,50 @@ const DEFAULT_SECTIONS: HomeSections = {
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
   brand: {
-    name: "Forge Fitness",
-    wordPrimary: "FORGE",
-    wordSecondary: "FITNESS",
-    navShort: "FORGE",
-    logoLetter: "F",
-    taglineShort: "Gym boutique premium en Buenos Aires. Entrenamiento de élite, comunidad real, resultados medibles.",
-    instagramHandle: "forgefitness",
+    name: "Onfit Get Fit",
+    wordPrimary: "ONFIT",
+    wordSecondary: "GET FIT",
+    navShort: "ONFIT",
+    logoLetter: "O",
+    taglineShort:
+      "Gym boutique en Buenos Aires. Entrenamiento con enfoque real: técnica, constancia y resultados.",
+    instagramHandle: "onfitgetfit",
     locationLabel: "Buenos Aires, ARG",
   },
   seo: {
-    title: "Forge Fitness — Gym Boutique Premium en Buenos Aires",
+    title: "Onfit Get Fit — Gym Boutique Premium en Buenos Aires",
     description:
-      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. +50 clases semanales con coaches certificados.",
-    siteName: "Forge Fitness",
+      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. Clases guiadas por coaches certificados.",
+    siteName: "Onfit Get Fit",
     keywords:
-      "gym, Buenos Aires, CrossFit, HIIT, entrenamiento, fitness, Palermo",
+      "Onfit Get Fit, gym, Buenos Aires, fitness, CrossFit, HIIT, Palermo, entrenamiento",
     ogImageUrl: "",
     indexable: true,
   },
   contact: {
     addressLines: "Av. del Libertador 4980\nPalermo, Buenos Aires",
     phoneDisplay: "11 2484-2720",
-    email: "info@forgefitness.com",
-    emailDisplay: "info@forgefitness.com",
+    email: "hola@onfitgetfit.com",
+    emailDisplay: "hola@onfitgetfit.com",
     hoursLines: "Lun-Vie: 6:00–22:00\nSáb: 8:00–14:00",
     mapsSearchQuery: "Av. del Libertador 4980, Palermo, Buenos Aires, Argentina",
     whatsappPhoneDigits: "5491124842720",
   },
   assets: {
-    faviconPath: "/logo.png",
+    faviconPath: "/logo-onfit.png",
+    logoImageSrc: "/logo-onfit.png",
   },
   hero: {
     eyebrowLeft: "Est. 2024 — Buenos Aires",
-    eyebrowRight: "No Pain, No Gain",
+    eyebrowRight: "Move smart · Get fit",
     categoryLine: "Gym Boutique Premium — Buenos Aires",
-    titleLine1: "FORGE",
-    titleLine2: "YOUR BODY",
+    titleLine1: "ONFIT",
+    titleLine2: "GET FIT",
     subtitle:
-      "Entrenamiento de élite en un espacio diseñado para quienes buscan resultados reales. Sin excusas, sin límites.",
+      "Entrenamiento de élite en un espacio pensado para quienes buscan resultados reales. Sin excusas, sin límites.",
   },
   preloader: {
-    subline: "Forjá tu mejor versión",
+    subline: "Entrená con intención. Get fit.",
   },
   sections: { ...DEFAULT_SECTIONS },
 };
@@ -320,6 +324,10 @@ function sanitizeSiteConfig(c: SiteConfig): SiteConfig {
   const assets = {
     ...c.assets,
     faviconPath: trimStr(c.assets.faviconPath, d.assets.faviconPath),
+    logoImageSrc: trimStr(
+      c.assets.logoImageSrc ?? "",
+      d.assets.logoImageSrc,
+    ),
   };
   const hero = {
     ...c.hero,
@@ -426,8 +434,16 @@ function applyEnvOverrides(c: SiteConfig): SiteConfig {
   }
 
   const faviconPath = envTrim("NEXT_PUBLIC_ASSETS_FAVICON_PATH");
-  if (faviconPath) {
-    next = { ...next, assets: { ...next.assets, faviconPath } };
+  const logoImageSrc = envTrim("NEXT_PUBLIC_ASSETS_LOGO_IMAGE");
+  if (faviconPath || logoImageSrc) {
+    next = {
+      ...next,
+      assets: {
+        ...next.assets,
+        ...(faviconPath ? { faviconPath } : {}),
+        ...(logoImageSrc ? { logoImageSrc } : {}),
+      },
+    };
   }
 
   const heroEyebrowLeft = envTrim("NEXT_PUBLIC_HERO_EYEBROW_LEFT");

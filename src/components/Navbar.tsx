@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { navItems } from "@/lib/data";
@@ -20,15 +21,28 @@ export function Navbar() {
     };
   }, [op]);
   const it = navItems;
-  const { navShort, logoLetter, locationLabel, instagramHandle } =
-    getSiteConfig().brand;
+  const site = getSiteConfig();
+  const { navShort, logoLetter, locationLabel, instagramHandle, name } =
+    site.brand;
+  const logoImg = site.assets.logoImageSrc.trim();
   return (
     <>
       <nav className={`N ${sc ? "sc" : ""}`}>
         <a href="#" className="N-logo">
-          <div className="N-hex">
-            <span>{logoLetter}</span>
-          </div>
+          {logoImg ? (
+            <Image
+              src={logoImg}
+              alt={name}
+              width={36}
+              height={36}
+              className="N-brandmark"
+              priority
+            />
+          ) : (
+            <div className="N-hex">
+              <span>{logoLetter}</span>
+            </div>
+          )}
           {navShort}
         </a>
         <ul className="NL">
