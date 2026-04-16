@@ -1,9 +1,9 @@
-const DEFAULT_PHONE = "5491124842720";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function getWhatsAppPhoneDigits(): string {
-  return (
-    process.env.NEXT_PUBLIC_WHATSAPP_PHONE?.replace(/\D/g, "") || DEFAULT_PHONE
-  );
+  const fromEnv = process.env.NEXT_PUBLIC_WHATSAPP_PHONE?.replace(/\D/g, "");
+  if (fromEnv) return fromEnv;
+  return getSiteConfig().contact.whatsappPhoneDigits.replace(/\D/g, "");
 }
 
 export type WhatsAppLeadSource =
@@ -36,7 +36,7 @@ function messageFor(
   source: WhatsAppLeadSource,
   planLabel?: string | null,
 ): string {
-  const brand = "Forge Fitness";
+  const brand = getSiteConfig().brand.name;
   switch (source) {
     case "hero":
       return `Hola, vengo desde la web de ${brand} y quiero empezar. ¿Me pueden orientar con los próximos pasos?`;

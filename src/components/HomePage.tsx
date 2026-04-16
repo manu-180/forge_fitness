@@ -22,13 +22,15 @@ import {
   tickerMotivation,
   tickerReviews,
 } from "@/lib/data";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function HomePage() {
-  const [loaded, setLoaded] = useState(false);
+  const { sections: s } = getSiteConfig();
+  const [loaded, setLoaded] = useState(!s.preloader);
   const onLoaded = useCallback(() => setLoaded(true), []);
   return (
     <>
-      <Preloader onDone={onLoaded} />
+      {s.preloader && <Preloader onDone={onLoaded} />}
       <Navbar />
       <div
         style={{
@@ -37,19 +39,25 @@ export function HomePage() {
         }}
       >
         <Hero />
-        <Ticker items={tickerMotivation} speed={35} sep="star" />
-        <Differentiators />
-        <Ticker items={tickerCategories} speed={25} reverse lime />
-        <Programs />
-        <Coaches />
-        <Schedule />
-        <Pricing />
-        <Testimonials />
-        <Ticker items={tickerReviews} speed={32} />
-        <Ticker items={tickerBadges} speed={26} reverse lime />
-        <Experience />
-        <Gallery />
-        <CTA />
+        {s.tickerMotivation && (
+          <Ticker items={tickerMotivation} speed={35} sep="star" />
+        )}
+        {s.differentiators && <Differentiators />}
+        {s.tickerCategories && (
+          <Ticker items={tickerCategories} speed={25} reverse lime />
+        )}
+        {s.programs && <Programs />}
+        {s.coaches && <Coaches />}
+        {s.schedule && <Schedule />}
+        {s.pricing && <Pricing />}
+        {s.testimonials && <Testimonials />}
+        {s.tickerReviews && <Ticker items={tickerReviews} speed={32} />}
+        {s.tickerBadges && (
+          <Ticker items={tickerBadges} speed={26} reverse lime />
+        )}
+        {s.experience && <Experience />}
+        {s.gallery && <Gallery />}
+        {s.cta && <CTA />}
         <Footer />
       </div>
       <BackToTop />

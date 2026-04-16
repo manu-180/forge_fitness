@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function Preloader({ onDone }: { onDone?: () => void }) {
   const [p, setP] = useState(0);
@@ -20,8 +21,9 @@ export function Preloader({ onDone }: { onDone?: () => void }) {
       setTimeout(() => onDone?.(), 600);
     }, 2200);
   }, [onDone]);
-  const w1 = "FORGE";
-  const w2 = "FITNESS";
+  const { brand, preloader: pl } = getSiteConfig();
+  const w1 = brand.wordPrimary;
+  const w2 = brand.wordSecondary;
   return (
     <div className={`PL ${d ? "dn" : ""}`}>
       <div className="PL-logo">
@@ -51,7 +53,7 @@ export function Preloader({ onDone }: { onDone?: () => void }) {
       <div className="PL-bar">
         <div className="PL-fill" style={{ width: `${p}%` }} />
       </div>
-      <div className="PL-tag">Forjá tu mejor versión</div>
+      <div className="PL-tag">{pl.subline}</div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow, Bebas_Neue } from "next/font/google";
+import { getSiteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -20,28 +21,58 @@ const barlow = Barlow({
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+const site = getSiteConfig();
+
+const keywordList = site.seo.keywords
+  ? site.seo.keywords
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean)
+  : [];
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Onfit Get Fit — Gym Boutique Premium en Buenos Aires",
-  description:
-    "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. +50 clases semanales con coaches certificados.",
+  title: site.seo.title,
+  description: site.seo.description,
+  ...(keywordList.length > 0 ? { keywords: keywordList } : {}),
+  alternates: {
+    canonical: "/",
+  },
+  robots: site.seo.indexable
+    ? { index: true, follow: true, googleBot: { index: true, follow: true } }
+    : {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
   openGraph: {
-    title: "Onfit Get Fit — Gym Boutique Premium en Buenos Aires",
-    description:
-      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. +50 clases semanales con coaches certificados.",
+    title: site.seo.title,
+    description: site.seo.description,
     locale: "es_AR",
     type: "website",
     url: siteUrl,
-    siteName: "Onfit Get Fit",
+    siteName: site.seo.siteName,
+    ...(site.seo.ogImageUrl
+      ? {
+          images: [
+            {
+              url: site.seo.ogImageUrl,
+              width: 1200,
+              height: 630,
+              alt: site.seo.siteName,
+            },
+          ],
+        }
+      : {}),
   },
   twitter: {
     card: "summary_large_image",
-    title: "Onfit Get Fit — Gym Boutique Premium en Buenos Aires",
-    description:
-      "Entrenamiento de élite en Buenos Aires. CrossFit, Boxing, HIIT, Yoga y más. +50 clases semanales con coaches certificados.",
+    title: site.seo.title,
+    description: site.seo.description,
+    ...(site.seo.ogImageUrl ? { images: [site.seo.ogImageUrl] } : {}),
   },
   icons: {
-    icon: "/logo.png",
+    icon: site.assets.faviconPath,
   },
 };
 

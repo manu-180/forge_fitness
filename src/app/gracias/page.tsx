@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { getSiteConfig } from "@/lib/site-config";
 import { GraciasClient } from "./GraciasClient";
 
-export const metadata: Metadata = {
-  title: "¡Gracias! — Forge Fitness",
-  description:
-    "Te redirigimos a WhatsApp para continuar tu contacto con Forge Fitness.",
-};
+export function generateMetadata(): Metadata {
+  const site = getSiteConfig();
+  return {
+    title: `¡Gracias! — ${site.brand.name}`,
+    description: `Te redirigimos a WhatsApp para continuar tu contacto con ${site.brand.name}.`,
+  };
+}
 
 function GraciasFallback() {
   return (

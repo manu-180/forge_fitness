@@ -1,7 +1,11 @@
+/**
+ * Contenido demo. En textos mostrados al usuario podés usar placeholders
+ * {{BRAND_NAME}}, {{BRAND_PRIMARY}}, {{BRAND_SECONDARY}} (ver `formatBrandText`).
+ */
 export const tickerMotivation = [
   "PUSH YOUR LIMITS",
   "NO EXCUSES",
-  "FORGE YOUR BODY",
+  "BUILD YOUR BODY",
   "TRAIN INSANE",
   "BECOME UNSTOPPABLE",
   "EVERY REP COUNTS",
@@ -517,7 +521,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     tier: "Premium",
     name: "Elite",
-    desc: "La experiencia FORGE completa. Sin límites.",
+    desc: "La experiencia {{BRAND_NAME}} completa. Sin límites.",
     mo: 65000,
     yr: 52000,
     feat: false,
@@ -550,7 +554,7 @@ export const testimonials: TestimonialItem[] = [
     name: "Martín Aguirre",
     det: "2 años · Plan Pro",
     tag: "CrossFit",
-    q: "Probé 5 gyms antes de FORGE. La diferencia está en los coaches: te corrigen, te empujan y celebran cada PR. Bajé 12kg.",
+    q: "Probé 5 gyms antes de conocer {{BRAND_NAME}}. La diferencia está en los coaches: te corrigen, te empujan y celebran cada PR. Bajé 12kg.",
     img: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=300&q=80",
   },
   {
@@ -644,10 +648,3 @@ export const footerNav = [
   "Galería",
   "Contacto",
 ] as const;
-
-export const pricingGuarantees: [string, string][] = [
-  ["🛡️", "Garantía 7 días"],
-  ["🔓", "Sin permanencia"],
-  ["💳", "Pagá en cuotas"],
-  ["⚡", "Activación inmediata"],
-];

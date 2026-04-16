@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { getHeroVideoSrc } from "@/lib/config";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function Hero() {
   const [vl, setVl] = useState(false);
   const videoSrc = getHeroVideoSrc();
+  const hero = getSiteConfig().hero;
   return (
     <section className="H" id="hero">
       <div className="H-v">
@@ -35,26 +37,23 @@ export function Hero() {
       <div className="H-o2" />
       <div className="H-in">
         <div className="H-mn">
-          <div className="H-si H-sl">Est. 2024 — Buenos Aires</div>
-          <div className="H-si H-sr">No Pain, No Gain</div>
+          <div className="H-si H-sl">{hero.eyebrowLeft}</div>
+          <div className="H-si H-sr">{hero.eyebrowRight}</div>
           <div className="H-c">
             <div className="H-ey">
               <span className="H-eyl" />
-              Gym Boutique Premium — Buenos Aires
+              {hero.categoryLine}
               <span className="H-eyl" />
             </div>
             <h1 className="H-t">
               <span className="H-tl">
-                <span className="H-ti">FORGE</span>
+                <span className="H-ti">{hero.titleLine1}</span>
               </span>
               <span className="H-tl">
-                <span className="H-ti">YOUR BODY</span>
+                <span className="H-ti">{hero.titleLine2}</span>
               </span>
             </h1>
-            <p className="H-sub">
-              Entrenamiento de élite en un espacio diseñado para quienes buscan
-              resultados reales. Sin excusas, sin límites.
-            </p>
+            <p className="H-sub">{hero.subtitle}</p>
             <div className="H-btns">
               <WhatsAppLeadLink className="hb hbp" source="hero">
                 Empezar Ahora

@@ -3,13 +3,8 @@
 import { useReveal } from "@/lib/hooks";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { footerNav, footerPrograms } from "@/lib/data";
-
-const GOOGLE_MAPS_LOCATION_URL =
-  "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent(
-    "Av. del Libertador 4980, Palermo, Buenos Aires, Argentina",
-  );
 import { getInstagramUrl, getTikTokUrl, getXUrl } from "@/lib/config";
+import { getGoogleMapsSearchUrl, getSiteConfig } from "@/lib/site-config";
 
 function IconInstagram({ className }: { className?: string }) {
   return (
@@ -133,22 +128,31 @@ function IconClock({ className }: { className?: string }) {
 }
 
 
-const contactLines = [
-  {
-    Icon: IconPin,
-    text: "Av. del Libertador 4980\nPalermo, Buenos Aires",
-    mapsUrl: GOOGLE_MAPS_LOCATION_URL,
-  },
-  { Icon: IconPhone, text: "11 2484-2720", whatsapp: true as const },
-  { Icon: IconMail, text: "info@forgefitness.com", mailto: "info@forgefitness.com" },
-  {
-    Icon: IconClock,
-    text: "Lun-Vie: 6:00–22:00\nSáb: 8:00–14:00",
-  },
-] as const;
-
 export function Footer() {
   const [r, v] = useReveal(0.05);
+  const config = getSiteConfig();
+  const mapsUrl = getGoogleMapsSearchUrl(config.contact.mapsSearchQuery);
+  const contactLines = [
+    {
+      Icon: IconPin,
+      text: config.contact.addressLines,
+      mapsUrl,
+    },
+    {
+      Icon: IconPhone,
+      text: config.contact.phoneDisplay,
+      whatsapp: true as const,
+    },
+    {
+      Icon: IconMail,
+      text: config.contact.emailDisplay,
+      mailto: config.contact.email,
+    },
+    {
+      Icon: IconClock,
+      text: config.contact.hoursLines,
+    },
+  ];
   return (
     <footer className="FT">
       <div ref={r} className={`rv ${v ? "v" : ""}`}>
@@ -156,14 +160,14 @@ export function Footer() {
           <div className="FT-brand">
             <div className="FT-logo">
               <div className="FT-hex">
-                <span>F</span>
+                <span>{config.brand.logoLetter}</span>
               </div>
-              FORGE <span style={{ color: "var(--lm)" }}>FITNESS</span>
+              {config.brand.wordPrimary}{" "}
+              <span style={{ color: "var(--lm)" }}>
+                {config.brand.wordSecondary}
+              </span>
             </div>
-            <p className="FT-d">
-              Gym boutique premium en Buenos Aires. Entrenamiento de élite,
-              comunidad real, resultados medibles.
-            </p>
+            <p className="FT-d">{config.brand.taglineShort}</p>
             <ul className="FT-s">
               <li>
                 <a
@@ -279,8 +283,8 @@ export function Footer() {
         </div>
         <div className="FT-b">
           <p className="FT-cp">
-            © {new Date().getFullYear()} FORGE FITNESS. Todos los derechos
-            reservados.
+            © {new Date().getFullYear()} {config.brand.wordPrimary}{" "}
+            {config.brand.wordSecondary}. Todos los derechos reservados.
           </p>
           <nav className="FT-bl" aria-label="Legal">
             {["Términos", "Privacidad", "Cookies"].map((l) => (

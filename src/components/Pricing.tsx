@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { useReveal } from "@/lib/hooks";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
-import { formatPriceAR, pricingGuarantees, pricingPlans } from "@/lib/data";
+import { formatBrandText } from "@/lib/brand-placeholders";
+import { formatPriceAR, pricingPlans } from "@/lib/data";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function Pricing() {
+  const brand = getSiteConfig().brand;
   const [yr, setYr] = useState(false);
   const [hr, hv] = useReveal();
   const [gr, gv] = useReveal(0.05);
-  const [br, bv] = useReveal();
   return (
     <section className="PP" id="planes">
       <div className="po po1" />
@@ -67,7 +69,7 @@ export function Pricing() {
                 {p.feat && <div className="ppb">Recomendado</div>}
                 <div className="ppt">{p.tier}</div>
                 <h3 className="ppn">{p.name}</h3>
-                <p className="ppd">{p.desc}</p>
+                <p className="ppd">{formatBrandText(p.desc, brand)}</p>
                 <div className="ppp">
                   <span className="ppc2">$</span>
                   <span className="ppa">{formatPriceAR(pr)}</span>
@@ -116,14 +118,6 @@ export function Pricing() {
               </div>
             );
           })}
-        </div>
-        <div ref={br} className={`gu rv ${bv ? "v" : ""}`}>
-          {pricingGuarantees.map(([ic, tx], i) => (
-            <div key={i} className="gui">
-              <span>{ic}</span>
-              <span>{tx}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

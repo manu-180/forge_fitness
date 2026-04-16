@@ -2,7 +2,9 @@
 
 import type { SVGProps } from "react";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
+import { formatBrandText } from "@/lib/brand-placeholders";
 import { useReveal } from "@/lib/hooks";
+import { getSiteConfig } from "@/lib/site-config";
 
 function IconBolt(props: SVGProps<SVGSVGElement>) {
   return (
@@ -14,6 +16,11 @@ function IconBolt(props: SVGProps<SVGSVGElement>) {
 
 export function CTA() {
   const [r, v] = useReveal(0.1);
+  const brand = getSiteConfig().brand;
+  const ctaBody = formatBrandText(
+    "Tu primera clase es gratis. Sin compromiso, sin letra chica. Vení, entrená y sentí la diferencia {{BRAND_PRIMARY}}.",
+    brand,
+  );
   return (
     <section className="CT" id="contacto">
       <div
@@ -44,10 +51,7 @@ export function CTA() {
           <br />
           <span className="CT-tl">PENSARLO</span>
         </h2>
-        <p className="CT-sub">
-          Tu primera clase es gratis. Sin compromiso, sin letra chica. Vení,
-          entrená y sentí la diferencia FORGE.
-        </p>
+        <p className="CT-sub">{ctaBody}</p>
         <div className="CT-bs">
           <WhatsAppLeadLink className="CT-bm" source="cta_reserva">
             <span

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { navItems } from "@/lib/data";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function Navbar() {
   const [sc, setSc] = useState(false);
@@ -19,14 +20,16 @@ export function Navbar() {
     };
   }, [op]);
   const it = navItems;
+  const { navShort, logoLetter, locationLabel, instagramHandle } =
+    getSiteConfig().brand;
   return (
     <>
       <nav className={`N ${sc ? "sc" : ""}`}>
         <a href="#" className="N-logo">
           <div className="N-hex">
-            <span>F</span>
+            <span>{logoLetter}</span>
           </div>
-          FORGE
+          {navShort}
         </a>
         <ul className="NL">
           {it.map((i) => (
@@ -78,8 +81,8 @@ export function Navbar() {
             Reservá Tu Clase Gratis
           </WhatsAppLeadLink>
           <div className="mi">
-            <span>Buenos Aires, ARG</span>
-            <span>@forgefitness</span>
+            <span>{locationLabel}</span>
+            <span>@{instagramHandle}</span>
           </div>
         </div>
       </div>

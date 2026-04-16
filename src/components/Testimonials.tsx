@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useReveal } from "@/lib/hooks";
+import { formatBrandText } from "@/lib/brand-placeholders";
 import { testimonials } from "@/lib/data";
+import { getSiteConfig } from "@/lib/site-config";
 
 export function Testimonials() {
+  const brand = getSiteConfig().brand;
   const [cur, setCur] = useState(0);
   const tot = testimonials.length;
   const ir = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -76,7 +79,7 @@ export function Testimonials() {
                     </div>
                     <div>
                       <div className="tc-qm">&quot;</div>
-                      <p className="tc-qt">{t.q}</p>
+                      <p className="tc-qt">{formatBrandText(t.q, brand)}</p>
                       <div className="tc-ar">
                         <div>
                           <div className="tc-an">{t.name}</div>

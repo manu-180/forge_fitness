@@ -221,8 +221,6 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;border:none;backgroun
 .ppct{display:block;width:100%;padding:clamp(.7rem,1vw,.85rem);font-size:clamp(.65rem,.75vw,.72rem);font-weight:700;text-transform:uppercase;letter-spacing:.12em;border-radius:6px;transition:all .35s var(--eo);text-align:center;overflow:hidden;text-decoration:none;box-sizing:border-box}
 .ppct.ol{background:transparent;color:var(--wh);border:1px solid var(--g6)}.ppct.ol:hover{border-color:var(--lm);color:var(--lm);box-shadow:0 0 18px var(--lg)}
 .ppct.pri{background:var(--lm);color:var(--bg);border:1px solid var(--lm)}.ppct.pri:hover{background:var(--ll);box-shadow:0 0 25px var(--lgm);transform:translateY(-2px)}
-.gu{display:flex;align-items:center;justify-content:center;gap:clamp(1.2rem,2.5vw,2.5rem);margin-top:clamp(2rem,3.5vw,3.5rem);padding:clamp(.8rem,1.5vw,1.2rem);border:1px solid var(--g8);border-radius:10px;background:rgba(20,20,20,.4);backdrop-filter:blur(8px);flex-wrap:wrap}
-.gui{display:flex;align-items:center;gap:.4rem;font-size:clamp(.58rem,.7vw,.65rem);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--g4)}
 
 /* TESTIMONIALS */
 .TE{padding:clamp(4.5rem,9vw,9rem) 0 clamp(2.5rem,5vw,4rem);position:relative;overflow:hidden}
