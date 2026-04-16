@@ -57,7 +57,7 @@ export function Experience() {
           </div>
         </div>
         <div className="EX-ss">
-          {experienceStats.map(([ic, v, l], i) => (
+          {experienceStats.map(([v, l], i) => (
             <div
               key={i}
               className="esc"
@@ -67,14 +67,6 @@ export function Experience() {
                 transition: `all .6s var(--eo) ${cv ? i * 0.1 : 0}s`,
               }}
             >
-              <div
-                style={{
-                  fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
-                  marginBottom: ".35rem",
-                }}
-              >
-                {ic}
-              </div>
               <div className="esv">{v}</div>
               <div className="esl">{l}</div>
             </div>

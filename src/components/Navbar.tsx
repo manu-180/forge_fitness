@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { navItems } from "@/lib/data";
 
 export function Navbar() {
@@ -36,9 +37,9 @@ export function Navbar() {
             </li>
           ))}
           <li>
-            <a href="#join" className="nc">
+            <WhatsAppLeadLink className="nc" source="nav">
               Empezar
-            </a>
+            </WhatsAppLeadLink>
           </li>
         </ul>
         <button
@@ -69,9 +70,13 @@ export function Navbar() {
           ))}
         </ul>
         <div className="MF">
-          <a href="#join" className="mc" onClick={() => setOp(false)}>
+          <WhatsAppLeadLink
+            className="mc"
+            source="nav_mobile"
+            onClick={() => setOp(false)}
+          >
             Reservá Tu Clase Gratis
-          </a>
+          </WhatsAppLeadLink>
           <div className="mi">
             <span>Buenos Aires, ARG</span>
             <span>@forgefitness</span>

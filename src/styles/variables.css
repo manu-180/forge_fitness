@@ -1,4 +1,6 @@
 :root {
+  /* Altura del AppBar fijo (.N); el contenido debe empezar debajo */
+  --nav-h: 72px;
   --bg: #0a0a0a;
   --bg1: #111;
   --bg2: #141414;

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useReveal } from "@/lib/hooks";
+import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { formatPriceAR, pricingGuarantees, pricingPlans } from "@/lib/data";
 
 export function Pricing() {
@@ -105,12 +106,13 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
+                <WhatsAppLeadLink
                   className={`ppct ${p.feat ? "pri" : "ol"}`}
+                  source="pricing"
+                  planLabel={p.name}
                 >
                   {p.feat ? "Empezar Ahora" : "Elegir Plan"}
-                </button>
+                </WhatsAppLeadLink>
               </div>
             );
           })}

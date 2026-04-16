@@ -44,13 +44,6 @@ export const navItems = [
   { l: "Contacto", h: "#contacto" },
 ] as const;
 
-export const heroStats = [
-  { v: "500+", l: "Miembros Activos" },
-  { v: "50+", l: "Clases / Semana" },
-  { v: "15", l: "Coaches Elite" },
-  { v: "98%", l: "Satisfacción" },
-] as const;
-
 export const differentiatorCards = [
   {
     n: "01",
@@ -201,7 +194,7 @@ export const coaches: CoachItem[] = [
     role: "Boxing Coach",
     spec: "Boxing",
     bio: "Campeona nacional amateur. Técnica pura + HIIT explosivo.",
-    img: "https://images.unsplash.com/photo-1609899464926-209bc2e0f751?w=500&q=80",
+    img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&q=80",
     stats: { e: "7", a: "150+", c: "5" },
   },
   {
@@ -592,11 +585,11 @@ export const experienceTags = [
   "Vestuarios premium",
 ] as const;
 
-export const experienceStats: [string, string, string][] = [
-  ["📐", "1.200 m²", "Superficie"],
-  ["🌡️", "22°C", "Climatización"],
-  ["🔊", "JBL Pro", "Sonido"],
-  ["💡", "DMX", "Iluminación"],
+export const experienceStats: [string, string][] = [
+  ["1.200 m²", "Superficie"],
+  ["22°C", "Climatización"],
+  ["JBL Pro", "Sonido"],
+  ["DMX", "Iluminación"],
 ];
 
 export type GalleryItem = { src: string; lb: string; sp: string };
@@ -623,7 +616,7 @@ export const galleryItems: GalleryItem[] = [
     sp: "",
   },
   {
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80",
+    src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
     lb: "Recovery",
     sp: "",
   },
@@ -657,10 +650,4 @@ export const pricingGuarantees: [string, string][] = [
   ["🔓", "Sin permanencia"],
   ["💳", "Pagá en cuotas"],
   ["⚡", "Activación inmediata"],
-];
-
-export const ctaTrust: [string, string][] = [
-  ["🛡️", "Sin compromiso"],
-  ["⏱️", "Reservá en 30 seg"],
-  ["🎯", "+500 ya lo hicieron"],
 ];

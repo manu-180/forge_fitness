@@ -1,7 +1,16 @@
 "use client";
 
+import type { SVGProps } from "react";
+import { WhatsAppLeadLink } from "@/components/WhatsAppLeadLink";
 import { useReveal } from "@/lib/hooks";
-import { ctaTrust } from "@/lib/data";
+
+function IconBolt(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M11.25 1.75 3 12.75h6.75L8.25 22.25 21 9.25h-6.75L16.75 1.75h-5.5Z" />
+    </svg>
+  );
+}
 
 export function CTA() {
   const [r, v] = useReveal(0.1);
@@ -40,20 +49,22 @@ export function CTA() {
           entrená y sentí la diferencia FORGE.
         </p>
         <div className="CT-bs">
-          <button type="button" className="CT-bm">
-            ⚡ Reservá Tu Clase Gratis
-          </button>
-          <button type="button" className="CT-bs2">
-            Hablar por WhatsApp
-          </button>
-        </div>
-        <div className="CT-tr">
-          {ctaTrust.map(([ic, tx], i) => (
-            <span key={i} className="CT-ti">
-              <span>{ic}</span>
-              {tx}
+          <WhatsAppLeadLink className="CT-bm" source="cta_reserva">
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.45rem",
+              }}
+            >
+              <IconBolt width={16} height={16} style={{ flexShrink: 0 }} />
+              Reservá Tu Clase Gratis
             </span>
-          ))}
+          </WhatsAppLeadLink>
+          <WhatsAppLeadLink className="CT-bs2" source="cta_whatsapp">
+            Hablar por WhatsApp
+          </WhatsAppLeadLink>
         </div>
       </div>
     </section>

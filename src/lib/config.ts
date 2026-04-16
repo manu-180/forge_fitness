@@ -6,3 +6,15 @@ export function getHeroVideoSrc(): string {
     process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() || DEFAULT_HERO_VIDEO_SRC
   );
 }
+
+export function getInstagramUrl(): string {
+  return process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() || "#";
+}
+
+export function getXUrl(): string {
+  return process.env.NEXT_PUBLIC_X_URL?.trim() || "#";
+}
+
+export function getTikTokUrl(): string {
+  return process.env.NEXT_PUBLIC_TIKTOK_URL?.trim() || "#";
+}

@@ -9,7 +9,7 @@ export function Gallery() {
   const [gr, gv] = useReveal(0.05);
   const gD = galleryItems;
   return (
-    <section className="GA">
+    <section className="GA" id="galería">
       <div className="SC">
         <div ref={hr} className={`GA-h rv ${hv ? "v" : ""}`}>
           <div className="ey">
