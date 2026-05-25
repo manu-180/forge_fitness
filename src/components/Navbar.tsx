@@ -44,6 +44,85 @@ function IconClock() {
   );
 }
 
+function IconPin() {
+  return (
+    <svg
+      className="NT-ic"
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function IconClockSmall() {
+  return (
+    <svg
+      className="NT-ic"
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
+
+function IconInstagram() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="3.6" />
+      <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function IconArrowRight() {
+  return (
+    <svg
+      className="nc-ar"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M5 12h14" />
+      <path d="M13 5l7 7-7 7" />
+    </svg>
+  );
+}
+
 function IconWhatsApp() {
   return (
     <svg
@@ -59,22 +138,65 @@ function IconWhatsApp() {
   );
 }
 
+function isOpenNow(): boolean {
+  const d = new Date();
+  const day = d.getDay();
+  const m = d.getHours() * 60 + d.getMinutes();
+  if (day >= 1 && day <= 5) return m >= 6 * 60 && m < 22 * 60;
+  if (day === 6) return m >= 8 * 60 && m < 14 * 60;
+  return false;
+}
+
 export function Navbar() {
   const [sc, setSc] = useState(false);
   const [op, setOp] = useState(false);
+  const [act, setAct] = useState<string>("");
+  const [openNow, setOpenNow] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
+
   useEffect(() => {
     const f = () => setSc(window.scrollY > 50);
-    window.addEventListener("scroll", f);
+    f();
+    window.addEventListener("scroll", f, { passive: true });
     return () => window.removeEventListener("scroll", f);
   }, []);
+
+  useEffect(() => {
+    setOpenNow(isOpenNow());
+    const id = window.setInterval(() => setOpenNow(isOpenNow()), 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const ids = navItems.map((i) => i.h.replace("#", ""));
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (els.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort(
+            (a, b) =>
+              (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0),
+          )[0];
+        if (visible) setAct("#" + visible.target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = op ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [op]);
+
   useEffect(() => {
     if (!op) return;
     const t = window.setTimeout(() => closeRef.current?.focus(), 50);
@@ -87,6 +209,7 @@ export function Navbar() {
       window.removeEventListener("keydown", onKey);
     };
   }, [op]);
+
   const it = navItems;
   const site = getSiteConfig();
   const { navShort, logoLetter, locationLabel, instagramHandle, name } =
@@ -97,45 +220,92 @@ export function Navbar() {
     .map((s) => s.trim())
     .filter(Boolean)
     .join(" · ");
+  const hoursShort = site.contact.hoursLines
+    .split("\n")
+    .map((s) => s.trim())
+    .filter(Boolean)[0];
+
   return (
-    <>
+    <div className={`NW ${sc ? "sc" : ""}`}>
+      <div className="NT" aria-hidden={sc}>
+        <div className="NT-in">
+          <div className="NT-grp">
+            <span className="NT-it">
+              <IconPin />
+              <span>{locationLabel}</span>
+            </span>
+            <span className="NT-sep" aria-hidden />
+            <span className="NT-it">
+              <IconClockSmall />
+              <span>{hoursShort}</span>
+            </span>
+          </div>
+          <div className="NT-grp">
+            <span className={`NT-st ${openNow ? "on" : "off"}`}>
+              <span className="NT-dot" aria-hidden />
+              {openNow ? "Ahora abierto" : "Cerrado"}
+            </span>
+            <span className="NT-sep" aria-hidden />
+            <a
+              href={`https://instagram.com/${instagramHandle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="NT-soc"
+              aria-label={`Instagram @${instagramHandle}`}
+            >
+              <IconInstagram />
+              <span>@{instagramHandle}</span>
+            </a>
+          </div>
+        </div>
+      </div>
       <nav className={`N ${sc ? "sc" : ""}`}>
-        <a href="#" className="N-logo">
-          {logoImg ? (
-            <Image
-              src={logoImg}
-              alt={name}
-              width={36}
-              height={36}
-              className="N-brandmark"
-              priority
-            />
-          ) : (
-            <div className="N-hex">
-              <span>{logoLetter}</span>
-            </div>
-          )}
-          {navShort}
+        <a href="#" className="N-logo" aria-label={name}>
+          <span className="N-mark">
+            {logoImg ? (
+              <Image
+                src={logoImg}
+                alt={name}
+                width={36}
+                height={36}
+                className="N-brandmark"
+                priority
+              />
+            ) : (
+              <span className="N-hex">
+                <span>{logoLetter}</span>
+              </span>
+            )}
+          </span>
+          <span className="N-word">
+            <span className="N-name">{navShort}</span>
+            <span className="N-tag">Boutique Gym · BA</span>
+          </span>
         </a>
         <ul className="NL">
           {it.map((i) => (
             <li key={i.l}>
-              <a href={i.h} className="nl">
-                {i.l}
+              <a
+                href={i.h}
+                className={`nl ${act === i.h ? "ac" : ""}`}
+              >
+                <span>{i.l}</span>
               </a>
             </li>
           ))}
-          <li>
-            <WhatsAppLeadLink className="nc" source="nav">
-              Empezar
-            </WhatsAppLeadLink>
-          </li>
         </ul>
+        <div className="NR">
+          <WhatsAppLeadLink className="nc" source="nav">
+            <span>Empezar</span>
+            <IconArrowRight />
+          </WhatsAppLeadLink>
+        </div>
         <button
           type="button"
           className={`BG ${op ? "op" : ""}`}
           onClick={() => setOp(!op)}
           aria-label="Menu"
+          aria-expanded={op}
         >
           <span />
           <span />
@@ -179,6 +349,12 @@ export function Navbar() {
             </button>
           </header>
           <div className="MM-rule" aria-hidden />
+          <div className="MM-status">
+            <span className={`NT-st ${openNow ? "on" : "off"}`}>
+              <span className="NT-dot" aria-hidden />
+              {openNow ? "Ahora abierto" : "Cerrado"}
+            </span>
+          </div>
           <div className="MM-scroll">
             <ul className="ML">
               {it.map((x, i) => (
@@ -223,6 +399,6 @@ export function Navbar() {
           </div>
         </aside>
       </div>
-    </>
+    </div>
   );
 }
