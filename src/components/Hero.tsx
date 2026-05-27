@@ -27,7 +27,7 @@ export function Hero() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse at 30% 40%,rgba(245,213,71,.06),transparent 60%),var(--bg)",
+              "radial-gradient(ellipse at 30% 40%,rgba(239,68,68,.1),transparent 60%),var(--bg)",
             opacity: vl ? 0 : 1,
             transition: "opacity 1.5s",
           }}

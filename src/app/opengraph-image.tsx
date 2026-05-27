@@ -4,7 +4,7 @@ import { getSiteConfig } from "@/lib/site-config";
 /** Edge evita prerender en Node donde @vercel/og puede fallar (Invalid URL). */
 export const runtime = "edge";
 
-export const alt = "Vista previa social — Forge Fitness";
+export const alt = "Vista previa social — Fitness Live Gym";
 
 export const size = { width: 1200, height: 630 };
 
@@ -38,7 +38,7 @@ export default async function OpenGraphImage() {
           display: "flex",
           flexDirection: "row",
           alignItems: "stretch",
-          background: "#0a0a0a",
+          background: "#060606",
           position: "relative",
         }}
       >
@@ -47,7 +47,7 @@ export default async function OpenGraphImage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(125deg, #0a0a0a 0%, #141210 42%, #0d0c08 100%)",
+              "linear-gradient(125deg, #060606 0%, #1a0808 42%, #050505 100%)",
           }}
         />
         <div
@@ -55,7 +55,7 @@ export default async function OpenGraphImage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 90% 70% at 12% 22%, rgba(245,213,71,0.14), transparent 52%), radial-gradient(ellipse 70% 55% at 88% 78%, rgba(245,213,71,0.08), transparent 50%)",
+              "radial-gradient(ellipse 90% 70% at 12% 22%, rgba(239,68,68,0.14), transparent 52%), radial-gradient(ellipse 70% 55% at 88% 78%, rgba(239,68,68,0.08), transparent 50%)",
           }}
         />
         <div
@@ -65,7 +65,7 @@ export default async function OpenGraphImage() {
             top: 0,
             bottom: 0,
             width: 6,
-            background: "linear-gradient(180deg, #f5d547, #c9a227)",
+            background: "linear-gradient(180deg, #ef4444, #b91c1c)",
           }}
         />
         <div
@@ -111,7 +111,7 @@ export default async function OpenGraphImage() {
               width: 120,
               height: 4,
               borderRadius: 2,
-              background: "linear-gradient(90deg, #f5d547, rgba(245,213,71,0.2))",
+              background: "linear-gradient(90deg, #ef4444, rgba(239,68,68,0.2))",
             }}
           />
           <div
@@ -134,7 +134,7 @@ export default async function OpenGraphImage() {
               fontWeight: 600,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "#f5d547",
+              color: "#ef4444",
             }}
           >
             {title}

@@ -2,33 +2,35 @@
   /* Altura del AppBar fijo (.N); el contenido debe empezar debajo */
   --nav-h: 106px;
   --nav-h-sc: 62px;
-  --bg: #0a0a0a;
-  --bg1: #111;
-  --bg2: #141414;
-  --g9: #1e1e1e;
-  --g8: #2a2a2a;
+  --bg: #060606;
+  --bg1: #0c0c0c;
+  --bg2: #111111;
+  --g9: #1a1a1a;
+  --g8: #262626;
   --g7: #3a3a3a;
   --g6: #555;
   --g5: #777;
-  --g4: #999;
-  --g3: #bbb;
-  --wh: #f5f5f0;
-  --lm: #f5d547;
-  --ld: #e8bc1a;
-  --ll: #fde68a;
-  --lg: rgba(245, 213, 71, 0.15);
-  --lgm: rgba(245, 213, 71, 0.25);
-  --lgl: rgba(245, 213, 71, 0.4);
+  --g4: #a3a3a3;
+  --g3: #d4d4d4;
+  --wh: #fafafa;
+  /* Paleta roja premium — Fitness Live Gym */
+  --lm: #ef4444;          /* Red 500 — acento principal */
+  --ld: #b91c1c;          /* Red 700 — sombra / hover dark */
+  --ll: #fca5a5;          /* Red 300 — highlight claro */
+  --lx: #dc2626;          /* Red 600 — intermedio para gradients */
+  --lg: rgba(239, 68, 68, 0.15);
+  --lgm: rgba(239, 68, 68, 0.32);
+  --lgl: rgba(239, 68, 68, 0.5);
   --fd: var(--font-bebas), Impact, sans-serif;
   --fb: var(--font-barlow), "Helvetica Neue", sans-serif;
   --eo: cubic-bezier(0.16, 1, 0.3, 1);
-  --gb: rgba(10, 10, 10, 0.85);
+  --gb: rgba(6, 6, 6, 0.85);
   --gbl: 20px;
   /* Drawer móvil premium */
-  --dr-bg: #1c2229;
+  --dr-bg: #141414;
   --dr-border: rgba(255, 255, 255, 0.06);
-  --dr-scrim: rgba(0, 0, 0, 0.52);
+  --dr-scrim: rgba(0, 0, 0, 0.62);
   --dr-sub: #9aa4b2;
-  --dr-cta: #c9a227;
-  --dr-cta-text: #141210;
+  --dr-cta: #dc2626;
+  --dr-cta-text: #fafafa;
 }
