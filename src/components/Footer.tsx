@@ -320,7 +320,7 @@ export function Footer() {
               href="https://www.theapexweb.com"
               className="FT-crl"
               target="_blank"
-              rel="noopener"
+              rel="noopener nofollow"
               aria-label="Desarrollo: APEX — diseño y desarrollo web por APEX"
             >
               <span className="FT-crm" aria-hidden>
