@@ -315,6 +315,22 @@ export function Footer() {
               </a>
             ))}
           </nav>
+          <div className="FT-cr">
+            <a
+              href="https://www.theapexweb.com"
+              className="FT-crl"
+              target="_blank"
+              rel="noopener"
+              aria-label="Desarrollo: APEX — diseño y desarrollo web por APEX"
+            >
+              <span className="FT-crm" aria-hidden>
+                <span>A</span>
+              </span>
+              <span className="FT-crt">
+                Desarrollo:&nbsp;<span className="FT-crb">APEX</span>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
