@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 
-export function useReveal(threshold = 0.15): [RefObject<HTMLDivElement>, boolean] {
+export function useReveal(threshold = 0.15): [RefObject<HTMLDivElement | null>, boolean] {
   const r = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(false);
   useEffect(() => {
